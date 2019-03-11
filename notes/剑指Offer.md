@@ -115,9 +115,10 @@ class Solution {
 *    }
 *
 */
+
 import java.util.ArrayList;
+
 class Solution {
-    
     public ArrayList<Integer> list = new ArrayList<>();
     
     public List<Integer> printListFromTailToHead(ListNode listNode) {
