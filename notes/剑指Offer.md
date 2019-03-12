@@ -1,5 +1,4 @@
 # 剑指Offer题解
-- - -
 
 ## Introduction
 记录自己的剑指Offer题解
@@ -11,9 +10,9 @@
 15 | [二维数组中的查找](#15) |`easy`
 16 | [替换空格](#16) |`easy`
 17 | [从尾到头打印链表](#17) |`easy`
-16 | [替换空格](#18) |`easy`
-16 | [替换空格](#19) |`easy` 
-16 | [替换空格](#20) |`easy` 
+20 | [用两个栈实现队列](#20) |`easy` 
+21 | [斐波那契数列](#21) |`easy`
+251 | [跳台阶](#251) |`easy` 
 
 ## Content
 
@@ -141,4 +140,138 @@ class Solution {
     }
 }
 ```
+</br>
 
+### 20. <span id="20">用两个栈实现队列</span>
+来源：[AcWing](https://www.acwing.com/problem/content/36/)
+#### 题目描述
+请用栈实现一个队列，支持如下四种操作：
+
+- push(x) – 将元素x插到队尾；
+- pop() – 将队首的元素弹出，并返回该元素；
+- peek() – 返回队首元素；
+- empty() – 返回队列是否为空；
+
+注意：
+
+- 你只能使用栈的标准操作：push to top，peek/pop from top, size 和 is empty；
+- 如果你选择的编程语言没有栈的标准库，你可以使用list或者deque等模拟栈的操作；
+- 输入数据保证合法，例如，在队列为空时，不会进行pop或者peek等操作；
+#### 样例
+
+```
+MyQueue queue = new MyQueue();
+
+queue.push(1);
+queue.push(2);
+queue.peek();  // returns 1
+queue.pop();   // returns 1
+queue.empty(); // returns false
+```
+#### 题解
+
+```
+class Solution {
+    public int Fibonacci(int n) {
+        int preNum = 1;
+        int prePreNum = 0;
+        
+        if(n == 0) {
+            return prePreNum;
+        }else if(n == 1) {
+            return preNum;
+        }
+        
+        int index = 1;
+        int curNum = 0;
+        while(index < n) {
+            curNum = preNum + prePreNum;
+            prePreNum = preNum;
+            preNum = curNum;
+            index++;
+        }
+        
+        return curNum;
+    }
+}
+```
+</br>
+
+### 21. <span id="21">斐波那契数列</span>
+来源：[AcWing](https://www.acwing.com/problem/content/18/)
+#### 题目描述
+输入一个整数 n ，求斐波那契数列的第 n 项。
+假定从0开始，第0项为0。(n<=39)
+#### 样例
+
+```
+输入整数 n=5 
+
+返回 5
+```
+#### 题解
+
+```
+class Solution {
+    public int Fibonacci(int n) {
+        int preNum = 1;
+        int prePreNum = 0;
+        
+        if(n == 0) {
+            return prePreNum;
+        }else if(n == 1) {
+            return preNum;
+        }
+        
+        int index = 1;
+        int curNum = 0;
+        while(index < n) {
+            curNum = preNum + prePreNum;
+            prePreNum = preNum;
+            preNum = curNum;
+            index++;
+        }
+        
+        return curNum;
+    }
+}
+```
+</br>
+
+### 251. <span id="251">跳台阶</span>
+来源：[NowCoder](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+#### 题目描述
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
+#### 样例
+
+```
+输入整数 n=3 
+
+返回 3
+```
+#### 题解
+
+```
+class Solution {
+    public int JumpFloor(int target) {
+        if(target <= 2) {
+            return target;
+        }
+        
+        int f1 = 1;
+        int f2 = 2;
+        
+        int index = 2;
+        int count = 0;
+        while(index < target) {
+            count = f1 + f2;
+            f1 = f2;
+            f2 = count;
+            index++;
+        }
+        
+        return count;
+    }
+}
+```
+</br>
