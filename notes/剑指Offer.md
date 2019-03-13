@@ -12,7 +12,10 @@
 17 | [从尾到头打印链表](#17) |`easy`
 20 | [用两个栈实现队列](#20) |`easy` 
 21 | [斐波那契数列](#21) |`easy`
+22 | [旋转数组的最小数字](#22) |`mid`
+33 | [链表中倒数第k个节点](#33) |`easy`
 251 | [跳台阶](#251) |`easy` 
+252 | [变态跳台阶](#252) |`easy` 
 
 ## Content
 
@@ -258,6 +261,107 @@ class Solution {
 ```
 </br>
 
+### 22. <span id="22">旋转数组的最小数字</span>
+来源：[AcWing](https://www.acwing.com/problem/content/20/)
+#### 题目描述
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
+
+输入一个升序的数组的一个旋转，输出旋转数组的最小元素。
+
+例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+
+数组可能包含重复项。
+
+**注意**：数组内所含元素非负，若数组大小为0，请返回-1。
+#### 样例
+
+```
+输入：nums=[2,2,2,0,1]
+
+输出：0
+```
+#### 题解
+
+```
+class Solution {
+    public int findMin(int[] nums) {
+        if(nums.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        
+        while(low < high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] > nums[high]) {
+                low = mid + 1;
+            }else if(nums[mid] == nums[high]) {
+                high = high - 1;
+            }else {
+                high = mid;
+            }
+        }
+        
+        return nums[low];
+    }
+}
+```
+</br>
+
+### 33. <span id="33">链表中倒数第k个节点</span>
+来源：[AcWing](https://www.acwing.com/problem/content/32/)
+#### 题目描述
+输入一个链表，输出该链表中倒数第k个结点。
+
+**注意**：
+- k >= 0;
+- 如果k大于链表长度，则返回 NULL;
+
+#### 样例
+
+```
+输入：链表：1->2->3->4->5 ，k=2
+
+输出：4
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode findKthToTail(ListNode pListHead, int k) {
+        if(pListHead == null) {
+            return null;
+        }
+        ListNode pre = pListHead;
+        ListNode after = pListHead;
+        
+        for(int i = 1; i < k; i++) {
+            if(pre.next != null) {
+                pre = pre.next;
+            }else {
+                return null;
+            }
+        }
+        
+        while(pre.next != null) {
+            pre = pre.next;
+            after = after.next;
+        }
+        
+        return after;
+    }
+}
+```
+</br>
+
 ### 251. <span id="251">跳台阶</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
@@ -291,6 +395,36 @@ class Solution {
         }
         
         return count;
+    }
+}
+```
+</br>
+
+### 252. <span id="252">变态跳台阶</span>
+来源：[NowCoder](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+#### 题目描述
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+#### 样例
+
+```
+输入整数 n=3 
+
+返回 4
+```
+#### 题解
+
+```
+class Solution {
+    public int JumpFloorII(int target) {
+        int f = 1;
+        int fn = 1;
+        
+        for(int i = 1; i < target; i++) {
+            fn = 2 * f;
+            f = fn;
+        }
+        
+        return fn;
     }
 }
 ```
