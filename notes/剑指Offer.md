@@ -13,7 +13,10 @@
 20 | [用两个栈实现队列](#20) |`easy` 
 21 | [斐波那契数列](#21) |`easy`
 22 | [旋转数组的最小数字](#22) |`mid`
+32 | [调整数组顺序使奇数位于偶数前面](#32) |`easy`
 33 | [链表中倒数第k个节点](#33) |`easy`
+35 | [反转链表](#35) |`easy`
+36 | [合并两个排序的链表](#36) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
 
@@ -308,6 +311,47 @@ class Solution {
 ```
 </br>
 
+### 32. <span id="32">调整数组顺序使奇数位于偶数前面</span>
+来源：[AcWing](https://www.acwing.com/problem/content/30/)
+#### 题目描述
+输入一个整数数组，实现一个函数来调整该数组中数字的顺序。
+
+使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分。
+#### 样例
+
+```
+输入：[1,2,3,4,5]
+
+输出: [1,3,5,2,4]
+```
+#### 题解
+
+```
+class Solution {
+    public void reOrderArray(int [] array) {
+        if(array.length == 0) {
+            return;
+        }
+        
+        boolean hasSwapped = false;
+        for(int i = 0; i < array.length - 1; i++) {
+            for(int j = 0; j < array.length - i - 1; j++) {
+                if(array[j] % 2 == 0 && array[j + 1] % 2 != 0) {
+                    int tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                    hasSwapped = true;
+                }
+            }
+            if(!hasSwapped) {
+                return;
+            }
+        }
+    }
+}
+```
+</br>
+
 ### 33. <span id="33">链表中倒数第k个节点</span>
 来源：[AcWing](https://www.acwing.com/problem/content/32/)
 #### 题目描述
@@ -357,6 +401,93 @@ class Solution {
         }
         
         return after;
+    }
+}
+```
+</br>
+
+### 35. <span id="35">反转链表</span>
+来源：[AcWing](https://www.acwing.com/problem/content/33/)
+#### 题目描述
+定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。
+#### 样例
+
+```
+输入:1->2->3->4->5->NULL
+
+输出:5->4->3->2->1->NULL
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+        
+        ListNode pre = null;
+        ListNode next = null;
+        
+        while(head != null) {
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        
+        return pre;
+    }
+}
+```
+</br>
+
+### 36. <span id="36">合并两个排序的链表</span>
+来源：[AcWing](https://www.acwing.com/problem/content/34/)
+#### 题目描述
+输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。。
+#### 样例
+
+```
+输入：1->3->5 , 2->4->5
+
+输出：1->2->3->4->5->5
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode merge(ListNode l1, ListNode l2) {
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null) {
+            return l1;
+        }
+        
+        if(l1.val <= l2.val) {
+            l1.next = merge(l1.next, l2);
+            return l1;
+        }else {
+            l2.next = merge(l1, l2.next);
+            return l2;
+        }
     }
 }
 ```
