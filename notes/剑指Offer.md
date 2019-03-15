@@ -17,6 +17,10 @@
 33 | [链表中倒数第k个节点](#33) |`easy`
 35 | [反转链表](#35) |`easy`
 36 | [合并两个排序的链表](#36) |`easy`
+41 | [包含min函数的栈](#41) |`easy`
+42 | [栈的压入、弹出序列](#42) |`easy`
+52 | [数组中出现次数超过一半的数字](#52) |`easy`
+53 | [最小的k个数](#53) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
 
@@ -453,7 +457,7 @@ class Solution {
 ### 36. <span id="36">合并两个排序的链表</span>
 来源：[AcWing](https://www.acwing.com/problem/content/34/)
 #### 题目描述
-输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。。
+输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
 #### 样例
 
 ```
@@ -488,6 +492,210 @@ class Solution {
             l2.next = merge(l1, l2.next);
             return l2;
         }
+    }
+}
+```
+</br>
+
+### 41. <span id="41">包含min函数的栈</span>
+来源：[AcWing](https://www.acwing.com/problem/content/90/)
+#### 题目描述
+设计一个支持push，pop，top等操作并且可以在O(1)时间内检索出最小元素的堆栈。
+
+- push(x)–将元素x插入栈中
+- pop()–移除栈顶元素
+- top()–得到栈顶元素
+- getMin()–得到栈中最小元素
+
+#### 样例
+
+```
+MinStack minStack = new MinStack();
+minStack.push(-1);
+minStack.push(3);
+minStack.push(-4);
+minStack.getMin();   --> Returns -4.
+minStack.pop();
+minStack.top();      --> Returns 3.
+minStack.getMin();   --> Returns -1.
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode merge(ListNode l1, ListNode l2) {
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null) {
+            return l1;
+        }
+        
+        if(l1.val <= l2.val) {
+            l1.next = merge(l1.next, l2);
+            return l1;
+        }else {
+            l2.next = merge(l1, l2.next);
+            return l2;
+        }
+    }
+}
+```
+</br>
+
+### 42. <span id="42">栈的压入、弹出序列</span>
+来源：[AcWing](https://www.acwing.com/problem/content/40/)
+#### 题目描述
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
+
+假设压入栈的所有数字均不相等。
+
+例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。
+
+**注意**：若两个序列为空或长度不等则视为并不是一个栈的压入、弹出序列。
+#### 样例
+
+```
+输入：[1,2,3,4,5]
+      [4,5,3,2,1]
+
+输出：true
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isPopOrder(int [] pushV,int [] popV) {
+        if(pushV.length == 0 && popV.length != 0) {
+            return false;
+        }
+        if(pushV.length != 0 && popV.length == 0) {
+            return false;
+        }
+        if(pushV.length != popV.length) {
+            return false;
+        }
+        
+        Stack<Integer> stack = new Stack<>();
+        int popIndex = 0;
+        for(int i = 0; i < pushV.length; i++) {
+            stack.push(pushV[i]);
+            while(!stack.isEmpty() && stack.peek() == popV[popIndex]) {
+                stack.pop();
+                popIndex++;
+            }
+        }
+        
+        return stack.isEmpty();
+    }
+}
+```
+</br>
+
+### 52. <span id="52">数组中出现次数超过一半的数字</span>
+来源：[AcWing](https://www.acwing.com/problem/content/48/)
+#### 题目描述
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+
+如果不存在则输出0。
+
+**思考题**：
+
+- 假设要求只能使用 O(n) 的时间和额外 O(1) 的空间，该怎么做呢？
+#### 样例
+
+```
+输入：[1,2,1,1,3]
+
+输出：1
+```
+#### 题解
+
+```
+class Solution {
+    public int moreThanHalfNum_Solution(int[] nums) {
+        if(nums.length == 0) {
+            return 0;
+        }
+        int num = nums[0];
+        int count = 1;
+        
+        for(int i = 1; i < nums.length; i++) {
+            if(num == nums[i]) {
+                count++;
+            }else {
+                count--;
+            }
+            if(count == 0) {
+                num = nums[i];
+                count = 1;
+            }
+        }
+        
+        count = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(num == nums[i]) {
+                count++;
+            }
+        }
+        
+        return count > nums.length / 2 ? num : 0;
+    }
+}
+```
+</br>
+
+### 53. <span id="53">最小的k个数</span>
+来源：[AcWing](https://www.acwing.com/problem/content/49/)
+#### 题目描述
+输入n个整数，找出其中最小的k个数。
+
+**注意**：
+
+- 数据保证k一定小于等于输入数组的长度;
+- 输出数组内元素请按从小到大顺序排序;
+
+#### 样例
+
+```
+输入：[1,2,3,4,5,6,7,8] , k=4
+
+输出：[1,2,3,4]
+```
+#### 题解
+
+```
+class Solution {
+    public List<Integer> getLeastNumbers_Solution(int [] input, int k) {
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0; i < k; i++) {
+            for(int j = input.length - 1; j > 0; j--) {
+                if(input[j] < input[j - 1]) {
+                    int tmp = input[j];
+                    input[j] = input[j - 1];
+                    input[j - 1] = tmp;
+                }
+            }
+            list.add(input[i]);
+        }
+        
+        return list;
     }
 }
 ```
