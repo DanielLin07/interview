@@ -749,7 +749,7 @@ class Solution {
         int count = nums[0];
         int maxSum = nums[0];
         for(int i = 1; i < nums.length; i++) {
-            if(count > 0) {
+            if(count >= 0) {
                 count += nums[i];
             }else {
                 count = nums[i];
