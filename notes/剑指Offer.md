@@ -21,6 +21,9 @@
 42 | [栈的压入、弹出序列](#42) |`easy`
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
+55 | [连续子数组的最大和](#55) |`easy`
+63 | [字符串中第一个只出现一次的字符](#63) |`easy`
+84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
 
@@ -522,32 +525,50 @@ minStack.getMin();   --> Returns -1.
 #### 题解
 
 ```
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode merge(ListNode l1, ListNode l2) {
-        if(l1 == null) {
-            return l2;
-        }
-        if(l2 == null) {
-            return l1;
-        }
-        
-        if(l1.val <= l2.val) {
-            l1.next = merge(l1.next, l2);
-            return l1;
-        }else {
-            l2.next = merge(l1, l2.next);
-            return l2;
+class MinStack {
+    
+    Stack<Integer> data;
+    Stack<Integer> min;
+
+    /** initialize your data structure here. */
+    public MinStack() {
+        data = new Stack<>();
+        min = new Stack<>();
+    }
+    
+    public void push(int x) {
+        data.push(x);
+        if(min.isEmpty()) {
+            min.push(x);
+        }else if(x <= min.peek()){
+            min.push(x);
         }
     }
+    
+    public void pop() {
+        int num = data.pop();
+        if(num == min.peek()) {
+            min.pop();
+        }
+    }
+    
+    public int top() {
+        return data.peek();
+    }
+    
+    public int getMin() {
+        return min.peek();
+    }
 }
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
 ```
 </br>
 
@@ -667,12 +688,10 @@ class Solution {
 输入n个整数，找出其中最小的k个数。
 
 **注意**：
-
 - 数据保证k一定小于等于输入数组的长度;
 - 输出数组内元素请按从小到大顺序排序;
 
 #### 样例
-
 ```
 输入：[1,2,3,4,5,6,7,8] , k=4
 
@@ -701,12 +720,126 @@ class Solution {
 ```
 </br>
 
+### 55. <span id="55">连续子数组的最大和</span>
+来源：[AcWing](https://www.acwing.com/problem/content/50/)
+#### 题目描述
+输入一个 非空 整型数组，数组里的数可能为正，也可能为负。
+
+数组中一个或连续的多个整数组成一个子数组。
+
+求所有子数组的和的最大值。
+
+要求时间复杂度为O(n)。
+
+#### 样例
+```
+输入：[1, -2, 3, 10, -4, 7, 2, -5]
+
+输出：18
+```
+#### 题解
+
+```
+class Solution {
+    public int maxSubArray(int[] nums) {
+        if(nums.length == 0) {
+            return 0;
+        }
+        
+        int count = nums[0];
+        int maxSum = nums[0];
+        for(int i = 1; i < nums.length; i++) {
+            if(count > 0) {
+                count += nums[i];
+            }else {
+                count = nums[i];
+            }
+            if(count > maxSum) {
+                maxSum = count;
+            }
+        }
+        
+        return maxSum;
+    }
+}
+```
+</br>
+
+### 63. <span id="63">字符串中第一个只出现一次的字符</span>
+来源：[AcWing](https://www.acwing.com/problem/content/59/)
+#### 题目描述
+在字符串中找出第一个只出现一次的字符。
+
+如输入"abaccdeff"，则输出b。
+
+如果字符串中不存在只出现一次的字符，返回#字符。
+
+#### 样例
+```
+输入："abaccdeff"
+
+输出：'b'
+```
+#### 题解
+
+```
+class Solution {
+    public char firstNotRepeatingChar(String s) {
+        if(s.length() == 0) {
+            return '#';
+        }
+        
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < s.length(); i++) {
+            if(map.get(s.charAt(i)) != null) {
+                map.put(s.charAt(i), map.get(s.charAt(i)) + 1);
+            }else {
+                map.put(s.charAt(i), 1);
+            }
+        }
+        
+        for(int i = 0; i < s.length(); i++) {
+            if(map.get(s.charAt(i)) == 1) {
+                return s.charAt(i);
+            }
+        }
+        
+        return '#';
+    }
+}
+```
+</br>
+
+### 84. <span id="84">求1+2+…+n</span>
+来源：[AcWing](https://www.acwing.com/problem/content/80/)
+#### 题目描述
+求1+2+…+n,要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+#### 样例
+```
+输入：10
+
+输出：55
+```
+#### 题解
+
+```
+class Solution {
+    public int getSum(int n) {
+        int sum = n;
+        boolean flag = (n > 0) && ((sum += getSum(n - 1)) > 0);
+        return sum;
+    }
+}
+```
+</br>
+
 ### 251. <span id="251">跳台阶</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
-#### 样例
 
+#### 样例
 ```
 输入整数 n=3 
 
