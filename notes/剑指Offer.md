@@ -15,6 +15,7 @@
 22 | [旋转数组的最小数字](#22) |`mid`
 32 | [调整数组顺序使奇数位于偶数前面](#32) |`easy`
 33 | [链表中倒数第k个节点](#33) |`easy`
+34 | [链表中环的入口结点](#33) |`easy`
 35 | [反转链表](#35) |`easy`
 36 | [合并两个排序的链表](#36) |`easy`
 41 | [包含min函数的栈](#41) |`easy`
@@ -23,6 +24,7 @@
 53 | [最小的k个数](#53) |`easy`
 55 | [连续子数组的最大和](#55) |`easy`
 63 | [字符串中第一个只出现一次的字符](#63) |`easy`
+66 | [两个链表的第一个公共结点](#66) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
@@ -408,6 +410,67 @@ class Solution {
         }
         
         return after;
+    }
+}
+```
+</br>
+
+### 34. <span id="34">链表中环的入口结点</span>
+来源：[AcWing](https://www.acwing.com/problem/content/86/)
+#### 题目描述
+给定一个链表，若其中包含环，则输出环的入口节点。
+
+若其中不包含环，则输出null。
+
+#### 样例
+
+![](https://user-gold-cdn.xitu.io/2019/3/19/169969a603ceb371?w=640&h=140&f=png&s=22018)
+```
+给定如上所示的链表：
+[1, 2, 3, 4, 5, 6]
+2
+注意，这里的2表示编号是2的节点，节点编号从0开始。所以编号是2的节点就是val等于3的节点。
+
+则输出环的入口节点3.
+```
+#### 题解
+
+```
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+class Solution {
+    public ListNode entryNodeOfLoop(ListNode head) {
+        if(head == null || head.next == null || head.next.next == null) {
+            return null;
+        }
+        ListNode fast = head.next.next;
+        ListNode slow = head.next;
+        
+        while(fast != slow) {
+            if(fast.next != null && fast.next.next != null) {
+                fast = fast.next.next;
+                slow = slow.next;
+            }else {
+                return null;
+            }
+        }
+        
+        fast = head;
+        while(fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        
+        return fast;
     }
 }
 ```
@@ -805,6 +868,54 @@ class Solution {
         }
         
         return '#';
+    }
+}
+```
+</br>
+
+### 66. <span id="66">两个链表的第一个公共结点</span>
+来源：[NowCoder](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+#### 题目描述
+输入两个链表，找出它们的第一个公共结点。
+
+当不存在公共节点时，返回空节点。
+
+如果字符串中不存在只出现一次的字符，返回#字符。
+
+#### 样例
+```
+给出两个链表如下所示：
+A：        a1 → a2
+                   ↘
+                     c1 → c2 → c3
+                   ↗            
+B:     b1 → b2 → b3
+
+输出第一个公共节点c1
+```
+#### 题解
+
+```
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+class Solution {
+    public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
+        ListNode p1 = pHead1;
+        ListNode p2 = pHead2;
+        
+        while(p1 != p2) {
+            p1 = (p1 == null ? pHead2 : p1.next);
+            p2 = (p2 == null ? pHead1 : p2.next); 
+        }
+        
+        return p1;
     }
 }
 ```
