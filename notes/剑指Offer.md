@@ -13,6 +13,7 @@
 20 | [用两个栈实现队列](#20) |`easy` 
 21 | [斐波那契数列](#21) |`easy`
 22 | [旋转数组的最小数字](#22) |`mid`
+29 | [删除链表中重复的节点](#29) |`mid`
 32 | [调整数组顺序使奇数位于偶数前面](#32) |`easy`
 33 | [链表中倒数第k个节点](#33) |`easy`
 34 | [链表中环的入口结点](#33) |`easy`
@@ -32,7 +33,7 @@
 ## Content
 
 ### 15. <span id="15">二维数组中的查找</span>
-来源：[AcWing](https://www.acwing.com/problem/content/16/)
+来源：[NowCoder](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
 请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
@@ -81,7 +82,7 @@ class Solution {
 </br>
 
 ### 16. <span id="16">替换空格</span>
-来源：[AcWing](https://www.acwing.com/problem/content/17/)
+来源：[AcWing](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 请实现一个函数，把字符串中的每个空格替换成"%20"。
 你可以假定输入字符串的长度最大是1000。
@@ -116,7 +117,7 @@ class Solution {
 </br>
 
 ### 17. <span id="17">从尾到头打印链表</span>
-来源：[AcWing](https://www.acwing.com/problem/content/18/)
+来源：[NowCoder](https://www.acwing.com/problem/content/18/)
 #### 题目描述
 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
 #### 样例
@@ -158,7 +159,7 @@ class Solution {
 </br>
 
 ### 20. <span id="20">用两个栈实现队列</span>
-来源：[AcWing](https://www.acwing.com/problem/content/36/)
+来源：[NowCoder](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 请用栈实现一个队列，支持如下四种操作：
 
@@ -233,7 +234,7 @@ class MyQueue {
 </br>
 
 ### 21. <span id="21">斐波那契数列</span>
-来源：[AcWing](https://www.acwing.com/problem/content/18/)
+来源：[NowCoder](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&tqId=11160&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入一个整数 n ，求斐波那契数列的第 n 项。
 假定从0开始，第0项为0。(n<=39)
@@ -274,7 +275,7 @@ class Solution {
 </br>
 
 ### 22. <span id="22">旋转数组的最小数字</span>
-来源：[AcWing](https://www.acwing.com/problem/content/20/)
+来源：[NowCoder](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
 
@@ -320,8 +321,61 @@ class Solution {
 ```
 </br>
 
+### 29. <span id="29">删除链表中重复的节点</span>
+来源：[NowCoder](https://https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking.acwing.com/problem/content/20/)
+#### 题目描述
+在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留。
+#### 样例1
+
+```
+输入：1->2->3->3->4->4->5
+
+输出：1->2->5
+```
+#### 样例2
+
+```
+
+输入：1->1->1->2->3
+
+输出：2->3
+```
+#### 题解
+
+```
+/*
+ public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}
+*/
+class Solution {
+    public ListNode deleteDuplication(ListNode pHead) {
+        if(pHead == null || pHead.next == null) {
+            return pHead;
+        }
+        
+        if(pHead.val == pHead.next.val) {
+            ListNode pNode = pHead.next;
+            while(pNode != null && pNode.val == pHead.val) {
+                pNode = pNode.next;
+            }
+            return deleteDuplication(pNode);
+        }else {
+            pHead.next = deleteDuplication(pHead.next);
+            return pHead;
+        }
+    }
+}
+```
+</br>
+
 ### 32. <span id="32">调整数组顺序使奇数位于偶数前面</span>
-来源：[AcWing](https://www.acwing.com/problem/content/30/)
+来源：[NowCoder](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入一个整数数组，实现一个函数来调整该数组中数字的顺序。
 
@@ -362,7 +416,7 @@ class Solution {
 </br>
 
 ### 33. <span id="33">链表中倒数第k个节点</span>
-来源：[AcWing](https://www.acwing.com/problem/content/32/)
+来源：[NowCoder](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入一个链表，输出该链表中倒数第k个结点。
 
@@ -416,7 +470,7 @@ class Solution {
 </br>
 
 ### 34. <span id="34">链表中环的入口结点</span>
-来源：[AcWing](https://www.acwing.com/problem/content/86/)
+来源：[NowCoder](https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4?tpId=13&tqId=11208&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 给定一个链表，若其中包含环，则输出环的入口节点。
 
@@ -477,7 +531,7 @@ class Solution {
 </br>
 
 ### 35. <span id="35">反转链表</span>
-来源：[AcWing](https://www.acwing.com/problem/content/33/)
+来源：[NowCoder](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&tqId=11168&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。
 #### 样例
@@ -521,7 +575,7 @@ class Solution {
 </br>
 
 ### 36. <span id="36">合并两个排序的链表</span>
-来源：[AcWing](https://www.acwing.com/problem/content/34/)
+来源：[NowCoder](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&tqId=11169&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
 #### 样例
@@ -564,7 +618,7 @@ class Solution {
 </br>
 
 ### 41. <span id="41">包含min函数的栈</span>
-来源：[AcWing](https://www.acwing.com/problem/content/90/)
+来源：[NowCoder](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 设计一个支持push，pop，top等操作并且可以在O(1)时间内检索出最小元素的堆栈。
 
@@ -636,7 +690,7 @@ class MinStack {
 </br>
 
 ### 42. <span id="42">栈的压入、弹出序列</span>
-来源：[AcWing](https://www.acwing.com/problem/content/40/)
+来源：[NowCoder](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
 
@@ -693,7 +747,7 @@ class Solution {
 </br>
 
 ### 52. <span id="52">数组中出现次数超过一半的数字</span>
-来源：[AcWing](https://www.acwing.com/problem/content/48/)
+来源：[NowCoder](https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&tqId=11181&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
 
@@ -746,7 +800,7 @@ class Solution {
 </br>
 
 ### 53. <span id="53">最小的k个数</span>
-来源：[AcWing](https://www.acwing.com/problem/content/49/)
+来源：[NowCoder](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入n个整数，找出其中最小的k个数。
 
@@ -784,7 +838,7 @@ class Solution {
 </br>
 
 ### 55. <span id="55">连续子数组的最大和</span>
-来源：[AcWing](https://www.acwing.com/problem/content/50/)
+来源：[NowCoder](https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 输入一个 非空 整型数组，数组里的数可能为正，也可能为负。
 
@@ -829,7 +883,7 @@ class Solution {
 </br>
 
 ### 63. <span id="63">字符串中第一个只出现一次的字符</span>
-来源：[AcWing](https://www.acwing.com/problem/content/59/)
+来源：[NowCoder](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 在字符串中找出第一个只出现一次的字符。
 
@@ -922,7 +976,7 @@ class Solution {
 </br>
 
 ### 84. <span id="84">求1+2+…+n</span>
-来源：[AcWing](https://www.acwing.com/problem/content/80/)
+来源：[AcWing](https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&tqId=11200&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 #### 题目描述
 求1+2+…+n,要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
 
