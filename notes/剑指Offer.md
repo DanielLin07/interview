@@ -96,7 +96,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public String replaceSpaces(StringBuffer str) {
         char[] strArray = str.toString().toCharArray();
@@ -129,7 +129,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /**
 *    public class ListNode {
 *        int val;
@@ -186,7 +186,7 @@ queue.empty(); // returns false
 ```
 #### 题解
 
-```
+```java
 class MyQueue {
     
     private Stack<Integer> stack1;
@@ -247,7 +247,7 @@ class MyQueue {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int Fibonacci(int n) {
         int preNum = 1;
@@ -295,7 +295,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int findMin(int[] nums) {
         if(nums.length == 0) {
@@ -342,7 +342,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /*
  public class ListNode {
     int val;
@@ -389,7 +389,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public void reOrderArray(int [] array) {
         if(array.length == 0) {
@@ -433,7 +433,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -489,7 +489,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -543,7 +543,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -587,7 +587,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -641,7 +641,7 @@ minStack.getMin();   --> Returns -1.
 ```
 #### 题解
 
-```
+```java
 class MinStack {
     
     Stack<Integer> data;
@@ -709,7 +709,7 @@ class MinStack {
 ```
 #### 题解
 
-```
+```java
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -765,7 +765,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int moreThanHalfNum_Solution(int[] nums) {
         if(nums.length == 0) {
@@ -816,7 +816,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public List<Integer> getLeastNumbers_Solution(int [] input, int k) {
         List<Integer> list = new ArrayList<>();
@@ -856,7 +856,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int maxSubArray(int[] nums) {
         if(nums.length == 0) {
@@ -899,7 +899,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public char firstNotRepeatingChar(String s) {
         if(s.length() == 0) {
@@ -949,7 +949,7 @@ B:     b1 → b2 → b3
 ```
 #### 题解
 
-```
+```java
 /*
 public class ListNode {
     int val;
@@ -988,7 +988,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int getSum(int n) {
         int sum = n;
@@ -1012,7 +1012,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int JumpFloor(int target) {
         if(target <= 2) {
@@ -1050,7 +1050,7 @@ class Solution {
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public int JumpFloorII(int target) {
         int f = 1;
