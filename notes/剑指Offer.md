@@ -7,6 +7,7 @@
 
 \# | 题目 | 难度 
 :-: | :-: | :-:
+13 | [数组中重复的数字](#13) |`easy`
 15 | [二维数组中的查找](#15) |`easy`
 16 | [替换空格](#16) |`easy`
 17 | [从尾到头打印链表](#17) |`easy`
@@ -24,13 +25,60 @@
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
 55 | [连续子数组的最大和](#55) |`easy`
+58 | [把数组排成最小的数](#58) |`mid`
 63 | [字符串中第一个只出现一次的字符](#63) |`easy`
 66 | [两个链表的第一个公共结点](#66) |`easy`
+67 | [数字在排序数组中出现的次数](#67) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
 
 ## Content
+
+## 13. <span id="13">数组中重复的数字</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。
+
+### 样例
+
+```
+给定 nums = [2, 3, 5, 4, 3, 2, 6, 7]。
+
+返回 2 或 3。
+```
+
+### 题解
+
+```java
+class Solution {
+    public boolean duplicate(int numbers[],int length,int [] duplication) {
+        if(numbers == null || length <= 0) {
+            return false;
+        }
+        for(int i = 0; i < numbers.length; i++) {
+            while(numbers[i] != i) {
+                if(numbers[i] == numbers[numbers[i]]) {
+                    duplication[0] = numbers[i];
+                    return true;
+                }
+                swap(numbers, i, numbers[i]);
+            }
+        }
+        return false;
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+}
+```
+</br>
 
 ## 15. <span id="15">二维数组中的查找</span>
 
@@ -964,6 +1012,64 @@ class Solution {
 ```
 </br>
 
+## 58. <span id="58">把数组排成最小的数</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/8fecd3f8ba334add803bf2a06af1b993?tpId=13&tqId=11185&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+
+例如输入数组[3, 32, 321]，则打印出这3个数字能排成的最小数字321323。
+
+### 样例
+
+```
+输入：[3, 32, 321]
+
+输出：321323
+```
+
+### 题解
+
+```java
+class Solution {
+    public String printMinNumber(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return "";
+        }
+        
+        for(int i = 0; i < nums.length - 1; i++) {
+            boolean hasSwapped = false;
+            for(int j = 0; j < nums.length - 1 - i; j++) {
+                long a = Long.valueOf(nums[j] + "" + nums[j + 1]);
+                long b = Long.valueOf(nums[j + 1] + "" + nums[j]);
+                if(a > b) {
+                   swap(nums, j, j + 1);
+                   hasSwapped = true;
+                }
+            }
+            if(!hasSwapped) {
+                break;
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder(nums[0] + "");
+        for(int i = 1; i < nums.length; i++) {
+            sb.append(nums[i]);
+        }
+        return sb.toString();
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+}
+```
+</br>
+
 ## 63. <span id="63">字符串中第一个只出现一次的字符</span>
 
 来源：[NowCoder](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
@@ -1062,6 +1168,48 @@ class Solution {
         }
         
         return p1;
+    }
+}
+```
+</br>
+
+## 67. <span id="67">数字在排序数组中出现的次数</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/70610bf967994b22bb1c26f9ae901fa2?tpId=13&tqId=11190&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+统计一个数字在排序数组中出现的次数。
+
+例如输入排序数组[1, 2, 3, 3, 3, 3, 4, 5]和数字3，由于3在这个数组中出现了4次，因此输出4。
+
+### 样例
+
+```
+输入：[1, 2, 3, 3, 3, 3, 4, 5] ,  3
+
+输出：4
+```
+
+### 题解
+
+```java
+class Solution {
+    public int getNumberOfK(int[] nums, int k) {
+        return binarySearch(nums, k + 0.5) - binarySearch(nums, k - 0.5);
+    }
+    
+    public int binarySearch(int[] nums, double target) {
+        int low = 0, high = nums.length - 1;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] > target) {
+                high = mid - 1;
+            }else if(nums[mid] < target) {
+                low = mid + 1;
+            }
+        }
+        return low;
     }
 }
 ```
