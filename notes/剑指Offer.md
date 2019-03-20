@@ -32,12 +32,12 @@
 
 ## Content
 
-### 15. <span id="15">二维数组中的查找</span>
+## 15. <span id="15">二维数组中的查找</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e?tpId=13&tqId=11154&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
 请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
-#### 样例
+### 样例
 
 ```
 输入数组：
@@ -51,7 +51,7 @@
 如果输入查找数值为7，则返回true，
 如果输入查找数值为5，则返回false。
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -81,20 +81,20 @@ class Solution {
 ```
 </br>
 
-### 16. <span id="16">替换空格</span>
+## 16. <span id="16">替换空格</span>
 来源：[AcWing](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 请实现一个函数，把字符串中的每个空格替换成"%20"。
 你可以假定输入字符串的长度最大是1000。
 注意输出字符串的长度可能大于1000。
-#### 样例
+### 样例
 
 ```
 输入："We are happy."
 
 输出："We%20are%20happy."
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -116,18 +116,18 @@ class Solution {
 ```
 </br>
 
-### 17. <span id="17">从尾到头打印链表</span>
+## 17. <span id="17">从尾到头打印链表</span>
 来源：[NowCoder](https://www.acwing.com/problem/content/18/)
-#### 题目描述
+### 题目描述
 输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。
-#### 样例
+### 样例
 
 ```
 输入：[2, 3, 5]
 
 返回：[5, 3, 2]
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -158,9 +158,9 @@ class Solution {
 ```
 </br>
 
-### 20. <span id="20">用两个栈实现队列</span>
+## 20. <span id="20">用两个栈实现队列</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 请用栈实现一个队列，支持如下四种操作：
 
 - push(x) – 将元素x插到队尾；
@@ -173,7 +173,7 @@ class Solution {
 - 你只能使用栈的标准操作：push to top，peek/pop from top, size 和 is empty；
 - 如果你选择的编程语言没有栈的标准库，你可以使用list或者deque等模拟栈的操作；
 - 输入数据保证合法，例如，在队列为空时，不会进行pop或者peek等操作；
-#### 样例
+### 样例
 
 ```
 MyQueue queue = new MyQueue();
@@ -184,7 +184,7 @@ queue.peek();  // returns 1
 queue.pop();   // returns 1
 queue.empty(); // returns false
 ```
-#### 题解
+### 题解
 
 ```java
 class MyQueue {
@@ -233,19 +233,19 @@ class MyQueue {
 ```
 </br>
 
-### 21. <span id="21">斐波那契数列</span>
+## 21. <span id="21">斐波那契数列</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3?tpId=13&tqId=11160&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入一个整数 n ，求斐波那契数列的第 n 项。
 假定从0开始，第0项为0。(n<=39)
-#### 样例
+### 样例
 
 ```
 输入整数 n=5 
 
 返回 5
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -274,9 +274,9 @@ class Solution {
 ```
 </br>
 
-### 22. <span id="22">旋转数组的最小数字</span>
+## 22. <span id="22">旋转数组的最小数字</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/9f3231a991af4f55b95579b44b7a01ba?tpId=13&tqId=11159&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。
 
 输入一个升序的数组的一个旋转，输出旋转数组的最小元素。
@@ -286,14 +286,14 @@ class Solution {
 数组可能包含重复项。
 
 **注意**：数组内所含元素非负，若数组大小为0，请返回-1。
-#### 样例
+### 样例
 
 ```
 输入：nums=[2,2,2,0,1]
 
 输出：0
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -321,18 +321,18 @@ class Solution {
 ```
 </br>
 
-### 29. <span id="29">删除链表中重复的节点</span>
+## 29. <span id="29">删除链表中重复的节点</span>
 来源：[NowCoder](https://https://www.nowcoder.com/practice/fc533c45b73a41b0b44ccba763f866ef?tpId=13&tqId=11209&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking.acwing.com/problem/content/20/)
-#### 题目描述
+### 题目描述
 在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留。
-#### 样例1
+### 样例1
 
 ```
 输入：1->2->3->3->4->4->5
 
 输出：1->2->5
 ```
-#### 样例2
+### 样例2
 
 ```
 
@@ -340,7 +340,7 @@ class Solution {
 
 输出：2->3
 ```
-#### 题解
+### 题解
 
 ```java
 /*
@@ -374,20 +374,20 @@ class Solution {
 ```
 </br>
 
-### 32. <span id="32">调整数组顺序使奇数位于偶数前面</span>
+## 32. <span id="32">调整数组顺序使奇数位于偶数前面</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/beb5aa231adc45b2a5dcc5b62c93f593?tpId=13&tqId=11166&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入一个整数数组，实现一个函数来调整该数组中数字的顺序。
 
 使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分。
-#### 样例
+### 样例
 
 ```
 输入：[1,2,3,4,5]
 
 输出: [1,3,5,2,4]
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -415,23 +415,23 @@ class Solution {
 ```
 </br>
 
-### 33. <span id="33">链表中倒数第k个节点</span>
+## 33. <span id="33">链表中倒数第k个节点</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/529d3ae5a407492994ad2a246518148a?tpId=13&tqId=11167&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入一个链表，输出该链表中倒数第k个结点。
 
 **注意**：
 - k >= 0;
 - 如果k大于链表长度，则返回 NULL;
 
-#### 样例
+### 样例
 
 ```
 输入：链表：1->2->3->4->5 ，k=2
 
 输出：4
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -469,14 +469,14 @@ class Solution {
 ```
 </br>
 
-### 34. <span id="34">链表中环的入口结点</span>
+## 34. <span id="34">链表中环的入口结点</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/253d2c59ec3e4bc68da16833f79a38e4?tpId=13&tqId=11208&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 给定一个链表，若其中包含环，则输出环的入口节点。
 
 若其中不包含环，则输出null。
 
-#### 样例
+### 样例
 
 ![](https://user-gold-cdn.xitu.io/2019/3/19/169969a603ceb371?w=640&h=140&f=png&s=22018)
 ```
@@ -487,7 +487,7 @@ class Solution {
 
 则输出环的入口节点3.
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -530,18 +530,18 @@ class Solution {
 ```
 </br>
 
-### 35. <span id="35">反转链表</span>
+## 35. <span id="35">反转链表</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=13&tqId=11168&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 定义一个函数，输入一个链表的头结点，反转该链表并输出反转后链表的头结点。
-#### 样例
+### 样例
 
 ```
 输入:1->2->3->4->5->NULL
 
 输出:5->4->3->2->1->NULL
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -574,18 +574,18 @@ class Solution {
 ```
 </br>
 
-### 36. <span id="36">合并两个排序的链表</span>
+## 36. <span id="36">合并两个排序的链表</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/d8b6b4358f774294a89de2a6ac4d9337?tpId=13&tqId=11169&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的。
-#### 样例
+### 样例
 
 ```
 输入：1->3->5 , 2->4->5
 
 输出：1->2->3->4->5->5
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -617,9 +617,9 @@ class Solution {
 ```
 </br>
 
-### 41. <span id="41">包含min函数的栈</span>
+## 41. <span id="41">包含min函数的栈</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/4c776177d2c04c2494f2555c9fcc1e49?tpId=13&tqId=11173&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 设计一个支持push，pop，top等操作并且可以在O(1)时间内检索出最小元素的堆栈。
 
 - push(x)–将元素x插入栈中
@@ -627,7 +627,7 @@ class Solution {
 - top()–得到栈顶元素
 - getMin()–得到栈中最小元素
 
-#### 样例
+### 样例
 
 ```
 MinStack minStack = new MinStack();
@@ -639,7 +639,7 @@ minStack.pop();
 minStack.top();      --> Returns 3.
 minStack.getMin();   --> Returns -1.
 ```
-#### 题解
+### 题解
 
 ```java
 class MinStack {
@@ -689,9 +689,9 @@ class MinStack {
 ```
 </br>
 
-### 42. <span id="42">栈的压入、弹出序列</span>
+## 42. <span id="42">栈的压入、弹出序列</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。
 
 假设压入栈的所有数字均不相等。
@@ -699,7 +699,7 @@ class MinStack {
 例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。
 
 **注意**：若两个序列为空或长度不等则视为并不是一个栈的压入、弹出序列。
-#### 样例
+### 样例
 
 ```
 输入：[1,2,3,4,5]
@@ -707,7 +707,7 @@ class MinStack {
 
 输出：true
 ```
-#### 题解
+### 题解
 
 ```java
 /**
@@ -746,9 +746,9 @@ class Solution {
 ```
 </br>
 
-### 52. <span id="52">数组中出现次数超过一半的数字</span>
+## 52. <span id="52">数组中出现次数超过一半的数字</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/e8a1b01a2df14cb2b228b30ee6a92163?tpId=13&tqId=11181&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
 
 如果不存在则输出0。
@@ -756,14 +756,14 @@ class Solution {
 **思考题**：
 
 - 假设要求只能使用 O(n) 的时间和额外 O(1) 的空间，该怎么做呢？
-#### 样例
+### 样例
 
 ```
 输入：[1,2,1,1,3]
 
 输出：1
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -799,22 +799,22 @@ class Solution {
 ```
 </br>
 
-### 53. <span id="53">最小的k个数</span>
+## 53. <span id="53">最小的k个数</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/6a296eb82cf844ca8539b57c23e6e9bf?tpId=13&tqId=11182&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入n个整数，找出其中最小的k个数。
 
 **注意**：
 - 数据保证k一定小于等于输入数组的长度;
 - 输出数组内元素请按从小到大顺序排序;
 
-#### 样例
+### 样例
 ```
 输入：[1,2,3,4,5,6,7,8] , k=4
 
 输出：[1,2,3,4]
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -837,9 +837,9 @@ class Solution {
 ```
 </br>
 
-### 55. <span id="55">连续子数组的最大和</span>
+## 55. <span id="55">连续子数组的最大和</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/459bd355da1549fa8a49e350bf3df484?tpId=13&tqId=11183&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入一个 非空 整型数组，数组里的数可能为正，也可能为负。
 
 数组中一个或连续的多个整数组成一个子数组。
@@ -848,13 +848,13 @@ class Solution {
 
 要求时间复杂度为O(n)。
 
-#### 样例
+### 样例
 ```
 输入：[1, -2, 3, 10, -4, 7, 2, -5]
 
 输出：18
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -882,22 +882,22 @@ class Solution {
 ```
 </br>
 
-### 63. <span id="63">字符串中第一个只出现一次的字符</span>
+## 63. <span id="63">字符串中第一个只出现一次的字符</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/1c82e8cf713b4bbeb2a5b31cf5b0417c?tpId=13&tqId=11187&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 在字符串中找出第一个只出现一次的字符。
 
 如输入"abaccdeff"，则输出b。
 
 如果字符串中不存在只出现一次的字符，返回#字符。
 
-#### 样例
+### 样例
 ```
 输入："abaccdeff"
 
 输出：'b'
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -927,16 +927,16 @@ class Solution {
 ```
 </br>
 
-### 66. <span id="66">两个链表的第一个公共结点</span>
+## 66. <span id="66">两个链表的第一个公共结点</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/6ab1d9a29e88450685099d45c9e31e46?tpId=13&tqId=11189&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 输入两个链表，找出它们的第一个公共结点。
 
 当不存在公共节点时，返回空节点。
 
 如果字符串中不存在只出现一次的字符，返回#字符。
 
-#### 样例
+### 样例
 ```
 给出两个链表如下所示：
 A：        a1 → a2
@@ -947,7 +947,7 @@ B:     b1 → b2 → b3
 
 输出第一个公共节点c1
 ```
-#### 题解
+### 题解
 
 ```java
 /*
@@ -975,18 +975,18 @@ class Solution {
 ```
 </br>
 
-### 84. <span id="84">求1+2+…+n</span>
+## 84. <span id="84">求1+2+…+n</span>
 来源：[AcWing](https://www.nowcoder.com/practice/7a0da8fc483247ff8800059e12d7caf1?tpId=13&tqId=11200&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 求1+2+…+n,要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
 
-#### 样例
+### 样例
 ```
 输入：10
 
 输出：55
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -999,18 +999,18 @@ class Solution {
 ```
 </br>
 
-### 251. <span id="251">跳台阶</span>
+## 251. <span id="251">跳台阶</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
 
-#### 样例
+### 样例
 ```
 输入整数 n=3 
 
 返回 3
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
@@ -1037,18 +1037,18 @@ class Solution {
 ```
 </br>
 
-### 252. <span id="252">变态跳台阶</span>
+## 252. <span id="252">变态跳台阶</span>
 来源：[NowCoder](https://www.nowcoder.com/practice/22243d016f6b47f2a6928b4313c85387?tpId=13&tqId=11162&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
-#### 题目描述
+### 题目描述
 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
-#### 样例
+### 样例
 
 ```
 输入整数 n=3 
 
 返回 4
 ```
-#### 题解
+### 题解
 
 ```java
 class Solution {
