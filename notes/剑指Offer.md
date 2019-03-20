@@ -53,7 +53,7 @@
 ```
 #### 题解
 
-```
+```java
 class Solution {
     public boolean searchArray(int[][] array, int target) {
         int rowNum = array.length;
