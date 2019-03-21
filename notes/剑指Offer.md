@@ -29,6 +29,7 @@
 63 | [字符串中第一个只出现一次的字符](#63) |`easy`
 66 | [两个链表的第一个公共结点](#66) |`easy`
 67 | [数字在排序数组中出现的次数](#67) |`easy`
+71 | [二叉树的深度](#71) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
@@ -1210,6 +1211,82 @@ class Solution {
             }
         }
         return low;
+    }
+}
+```
+</br>
+
+## 71. <span id="71">二叉树的深度</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/435fb86331474282a3499955f0a41e8b?tpId=13&tqId=11191&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一棵二叉树的根结点，求该树的深度。
+
+从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+
+### 样例
+
+```
+输入：二叉树[8, 12, 2, null, null, 6, 4, null, null, null, null]如下图所示：
+    8
+   / \
+  12  2
+     / \
+    6   4
+
+输出：3
+```
+
+### 题解
+
+#### 递归实现
+
+```java
+class Solution {
+    public int treeDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        int left =  treeDepth(root.left);
+        int right = treeDepth(root.right);
+        return Math.max(left, right) + 1;
+    }
+}
+```
+
+#### 非递归实现
+
+```java
+class Solution {
+    public int treeDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int count = 0, nextCount = 1, depth = 0;
+        
+        while(queue.size() != 0) {
+            TreeNode node = queue.poll();
+            count++;
+            if(node.left != null) {
+                queue.add(node.left);
+            }
+            if(node.right != null) {
+                queue.add(node.right);
+            }
+            if(count == nextCount) {
+                count = 0;
+                nextCount = queue.size();
+                depth++;
+            }
+        }
+        
+        return depth;
     }
 }
 ```
