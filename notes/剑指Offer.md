@@ -31,6 +31,7 @@
 66 | [两个链表的第一个公共结点](#66) |`easy`
 67 | [数字在排序数组中出现的次数](#67) |`easy`
 71 | [二叉树的深度](#71) |`easy`
+75 | [和为S的两个数字](#75) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
@@ -490,9 +491,7 @@ class Solution {
         for(int i = 0; i < array.length - 1; i++) {
             for(int j = 0; j < array.length - i - 1; j++) {
                 if(array[j] % 2 == 0 && array[j + 1] % 2 != 0) {
-                    int tmp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = tmp;
+                    swap(array, j, j + 1);
                     hasSwapped = true;
                 }
             }
@@ -500,6 +499,12 @@ class Solution {
                 return;
             }
         }
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }
 ```
@@ -588,17 +593,6 @@ class Solution {
 ### 题解
 
 ```java
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
 class Solution {
     public ListNode entryNodeOfLoop(ListNode head) {
         if(head == null || head.next == null || head.next.next == null) {
@@ -647,14 +641,6 @@ class Solution {
 ### 题解
 
 ```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null) {
@@ -696,14 +682,6 @@ class Solution {
 ### 题解
 
 ```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 class Solution {
     public ListNode merge(ListNode l1, ListNode l2) {
         if(l1 == null) {
@@ -789,15 +767,6 @@ class MinStack {
         return min.peek();
     }
 }
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(x);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */
 ```
 </br>
 
@@ -995,15 +964,19 @@ class Solution {
         for(int i = 0; i < k; i++) {
             for(int j = input.length - 1; j > 0; j--) {
                 if(input[j] < input[j - 1]) {
-                    int tmp = input[j];
-                    input[j] = input[j - 1];
-                    input[j - 1] = tmp;
+                    swap(input, j, j - 1);
                 }
             }
             list.add(input[i]);
         }
         
         return list;
+    }
+    
+    private void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
     }
 }
 ```
@@ -1195,15 +1168,6 @@ B:     b1 → b2 → b3
 ### 题解
 
 ```java
-/*
-public class ListNode {
-    int val;
-    ListNode next = null;
-
-    ListNode(int val) {
-        this.val = val;
-    }
-}*/
 class Solution {
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
         ListNode p1 = pHead1;
@@ -1338,6 +1302,51 @@ class Solution {
         }
         
         return depth;
+    }
+}
+```
+</br>
+
+## 75. <span id="75">和为S的两个数字</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/390da4f7a00f44bea7c2f3d19491311b?tpId=13&tqId=11195&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
+
+### 样例
+
+```
+输入：[1,2,3,4] , sum=7
+
+输出：[3,4]
+```
+
+### 题解
+
+```java
+class Solution {
+    public ArrayList<Integer> FindNumbersWithSum(int [] array,int sum) {
+        ArrayList<Integer> result = new ArrayList<>();
+        if(array == null || array.length == 0) {
+            return result;
+        }
+        
+        int low = 0, high = array.length - 1;
+        while(low < high) {
+            if(array[low] + array[high] == sum){
+                result.add(array[low]);
+                result.add(array[high]);
+                return result;
+            }else if(array[low] + array[high] < sum) {
+                low++;
+            }else {
+                high--;
+            }
+        }
+        
+        return result;
     }
 }
 ```
