@@ -22,6 +22,7 @@
 36 | [合并两个排序的链表](#36) |`easy`
 41 | [包含min函数的栈](#41) |`easy`
 42 | [栈的压入、弹出序列](#42) |`easy`
+47 | [二叉树中和为某一值的路径](#47) |`mid`
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
 55 | [连续子数组的最大和](#55) |`easy`
@@ -826,14 +827,6 @@ class MinStack {
 ### 题解
 
 ```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 class Solution {
     public boolean isPopOrder(int [] pushV,int [] popV) {
         if(pushV.length == 0 && popV.length != 0) {
@@ -857,6 +850,59 @@ class Solution {
         }
         
         return stack.isEmpty();
+    }
+}
+```
+</br>
+
+## 47. <span id="47">二叉树中和为某一值的路径</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/b736e784e3e34731af99065031301bca?tpId=13&tqId=11177&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一棵二叉树和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。
+
+从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。
+
+### 样例
+
+```
+给出二叉树如下所示，并给出num=22。
+      5
+     / \
+    4   6
+   /   / \
+  12  13  6
+ /  \    / \
+9    1  5   1
+
+输出：[[5,4,12,1],[5,6,6,5]]
+```
+
+### 题解
+
+```java
+class Solution {
+    
+    List<List<Integer>> resultList = new ArrayList<>();
+    List<Integer> result = new ArrayList<>(); 
+    
+    public List<List<Integer>> findPath(TreeNode root, int sum) {
+        if(root == null) {
+            return resultList;
+        }
+        
+        sum -= root.val;
+        result.add(root.val);
+        if(sum == 0 && root.left == null && root.right == null) {
+            resultList.add(new ArrayList<>(result));
+        }
+        
+        findPath(root.left, sum);
+        findPath(root.right, sum);
+        result.remove(result.size() - 1);
+        return resultList;
     }
 }
 ```
@@ -1268,7 +1314,12 @@ class Solution {
         
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int count = 0, nextCount = 1, depth = 0;
+        // 当前层遍历的节点数
+        int count = 0;
+        // 下一层的节点总数
+        int nextCount = 1;
+        // 深度
+        int depth = 0;
         
         while(queue.size() != 0) {
             TreeNode node = queue.poll();
