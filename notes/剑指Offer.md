@@ -33,6 +33,7 @@
 66 | [两个链表的第一个公共结点](#66) |`easy`
 67 | [数字在排序数组中出现的次数](#67) |`easy`
 71 | [二叉树的深度](#71) |`easy`
+72 | [平衡二叉树](#72) |`easy`
 75 | [和为S的两个数字](#75) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
@@ -793,7 +794,7 @@ class Solution {
    / \ / \
   5  7 9 11
 
- [8,6,10,5,7,9,11] 
+ [8,6,10,5,7,9,11,null,null,null,null,null,null,null,null] 
 输出树：
       8
      / \
@@ -801,7 +802,7 @@ class Solution {
    / \ / \
   11 9 7  5
 
- [8,10,6,11,9,7,5]
+ [8,10,6,11,9,7,5,null,null,null,null,null,null,null,null]
 ```
 
 ### 题解
@@ -1430,6 +1431,60 @@ class Solution {
         }
         
         return depth;
+    }
+}
+```
+</br>
+
+## 72. <span id="72">平衡二叉树</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/8b3b95850edb4115918ecebdf1b4d222?tpId=13&tqId=11192&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一棵二叉树的根结点，判断该树是不是平衡二叉树。
+
+如果某二叉树中任意结点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+
+**注意**：
+
+- 规定空树也是一棵平衡二叉树。
+
+### 样例
+
+```
+输入：二叉树[5,7,11,null,null,12,9,null,null,null,null]如下所示，
+    5
+   / \
+  7  11
+    /  \
+   12   9
+
+输出：true
+```
+
+### 题解
+
+#### 解法一
+
+```java
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        return Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1 &&
+            isBalanced(root.left) && isBalanced(root.right);
+    }
+    
+    public int maxDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        return Math.max(left, right) + 1;
     }
 }
 ```
