@@ -22,6 +22,7 @@
 36 | [合并两个排序的链表](#36) |`easy`
 37 | [树的子结构](#37) |`easy`
 38 | [二叉树的镜像](#38) |`easy`
+39 | [对称的二叉树](#39) |`easy`
 41 | [包含min函数的栈](#41) |`easy`
 42 | [栈的压入、弹出序列](#42) |`easy`
 47 | [二叉树中和为某一值的路径](#47) |`mid`
@@ -827,6 +828,62 @@ class Solution {
         if(root.right != null) {
             mirror(root.right);
         }
+    }
+}
+```
+</br>
+
+## 39. <span id="39">对称的二叉树</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/ff05d44dfdb04e1d83bdbdab320efbcb?tpId=13&tqId=11211&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+请实现一个函数，用来判断一棵二叉树是不是对称的。
+
+如果一棵二叉树和它的镜像一样，那么它是对称的。
+
+### 样例
+
+```
+如下图所示二叉树[1,2,2,3,4,4,3,null,null,null,null,null,null,null,null]为对称二叉树：
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+
+如下图所示二叉树[1,2,2,null,4,4,3,null,null,null,null,null,null]不是对称二叉树：
+    1
+   / \
+  2   2
+   \ / \
+   4 4  3
+```
+
+### 题解
+
+```java
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null) {
+            return true;
+        }
+        
+        return check(root.left, root.right);
+    }
+    
+    private boolean check(TreeNode left, TreeNode right) {
+        if(left == null) {
+            return right == null;
+        }else if(right == null) {
+            return false;
+        }
+        
+        if(left.val != right.val) {
+            return false;
+        }
+        return check(left.left, right.right) && check(left.right, right.left);
     }
 }
 ```
