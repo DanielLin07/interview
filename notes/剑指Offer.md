@@ -1600,25 +1600,27 @@ class Solution {
 
 ```java
 class Solution {
-    
-    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
-        if(array == null || array.length < 2) {
-            return;
+    public int[] findNumsAppearOnce(int[] nums) {
+        if(nums == null || nums.length < 2) {
+            return null;
         }
         
+        int[] result = new int[2];
         int num = 0;
-        for(int i = 0; i < array.length; i++) {
-            num ^= array[i];
+        for(int i = 0; i < nums.length; i++) {
+            num ^= nums[i];
         }
         
         int indexOf1 = findFirstIndex(num);
-        for(int i = 0; i < array.length; i++) {
-            if(isBit(array[i], indexOf1)) {
-                num1[0] ^= array[i];
+        for(int i = 0; i < nums.length; i++) {
+            if(isBit(nums[i], indexOf1)) {
+                result[0] ^= nums[i];
             }else {
-                num2[0] ^= array[i];
+                result[1] ^= nums[i];
             }
         }
+        
+        return result;
     }
     
     public int findFirstIndex(int num) {
@@ -1632,8 +1634,10 @@ class Solution {
     
     public boolean isBit(int num, int indexBit) {
         num = num >> indexBit;
-        return (num & 1) == 1;
+        return (num & 1) == 1; 
     }
+    
+    
 }
 ```
 </br>
