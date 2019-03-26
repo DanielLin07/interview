@@ -36,6 +36,7 @@
 67 | [数字在排序数组中出现的次数](#67) |`easy`
 71 | [二叉树的深度](#71) |`easy`
 72 | [平衡二叉树](#72) |`easy`
+73 | [数组中只出现一次的两个数字](#73) |`mid`
 75 | [和为S的两个数字](#75) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
@@ -1570,6 +1571,68 @@ class Solution {
         }
         
         return Math.abs(left - right) > 1 ? -1 : Math.max(left, right) + 1;
+    }
+}
+```
+</br>
+
+## 73. <span id="73">数组中只出现一次的两个数字</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/e02fdb54d7524710a7d664d082bb7811?tpId=13&tqId=11193&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+一个整型数组里除了两个数字之外，其他的数字都出现了两次。
+
+请写程序找出这两个只出现一次的数字。
+
+你可以假设这两个数字一定存在。
+
+### 样例
+
+```
+输入：[1,2,3,3,4,4]
+
+输出：[1,2]
+```
+
+### 题解
+
+```java
+class Solution {
+    
+    public void FindNumsAppearOnce(int [] array,int num1[] , int num2[]) {
+        if(array == null || array.length < 2) {
+            return;
+        }
+        
+        int num = 0;
+        for(int i = 0; i < array.length; i++) {
+            num ^= array[i];
+        }
+        
+        int indexOf1 = findFirstIndex(num);
+        for(int i = 0; i < array.length; i++) {
+            if(isBit(array[i], indexOf1)) {
+                num1[0] ^= array[i];
+            }else {
+                num2[0] ^= array[i];
+            }
+        }
+    }
+    
+    public int findFirstIndex(int num) {
+        int indexBit = 0;
+        while(((num & 1) == 0) && indexBit < 8 * 4) {
+            num = num >> 1;
+            indexBit++;
+        }
+        return indexBit;
+    }
+    
+    public boolean isBit(int num, int indexBit) {
+        num = num >> indexBit;
+        return (num & 1) == 1;
     }
 }
 ```
