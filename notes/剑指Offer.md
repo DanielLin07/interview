@@ -1038,37 +1038,42 @@ class Solution {
 
 ```java
 class Solution {
-    public int treeDepth(TreeNode root) {
+    public List<List<Integer>> printFromTopToBottom(TreeNode root) {
+        // result用于记录所有结果
+        List<List<Integer>> result = new ArrayList<>();
         if(root == null) {
-            return 0;
+            return result;
         }
         
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        // 当前层遍历的节点数
-        int count = 0;
-        // 下一层的节点总数
-        int nextCount = 1;
-        // 深度
-        int depth = 0;
+        // layer用于记录当前行的所有节点
+        Queue<TreeNode> layer = new LinkedList<>();
+        // layerList用于记录当前行的所有节点的值
+        List<Integer> layerList = new ArrayList<>();
+        // index记录当前行遍历到的节点，count记录当前行的总节点
+        int index = 0, count = 1;
+        layer.add(root);
         
-        while(queue.size() != 0) {
-            TreeNode node = queue.poll();
-            count++;
+        while(!layer.isEmpty()) {
+            TreeNode node = layer.remove();
+            layerList.add(node.val);
+            index++;
             if(node.left != null) {
-                queue.add(node.left);
+                layer.add(node.left);
             }
             if(node.right != null) {
-                queue.add(node.right);
+                layer.add(node.right);
             }
-            if(count == nextCount) {
-                count = 0;
-                nextCount = queue.size();
-                depth++;
+            
+            // 当遍历完了，则将记录的值都记录到result当中 
+            if(index == count) {
+                index = 0;
+                count = layer.size();
+                result.add(layerList);
+                layerList = new ArrayList<>();
             }
         }
         
-        return depth;
+        return result;
     }
 }
 ```
