@@ -26,6 +26,7 @@
 39 | [对称的二叉树](#39) |`easy`
 41 | [包含min函数的栈](#41) |`easy`
 42 | [栈的压入、弹出序列](#42) |`easy`
+44 | [分行从上往下打印二叉树](#44) |`mid`
 47 | [二叉树中和为某一值的路径](#47) |`mid`
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
@@ -975,6 +976,99 @@ class Solution {
         }
         
         return stack.isEmpty();
+    }
+}
+```
+</br>
+
+## 44. <span id="44">分行从上往下打印二叉树</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/445c44d982d04483b04a54f298796288?tpId=13&tqId=11213&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+从上到下按层打印二叉树，同一层的结点按从左到右的顺序打印，每一层打印到一行。
+
+### 样例
+
+```
+输入如下图所示二叉树[8, 12, 2, null, null, 6, null, 4, null, null, null]
+    8
+   / \
+  12  2
+     /
+    6
+   /
+  4
+
+输出：[[8], [12, 2], [6], [4]]
+```
+
+### 题解
+
+#### 递归实现
+
+```java
+class Solution {
+    public List<List<Integer>> printFromTopToBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        depth(root, 1, result);
+        return result;
+    }
+    
+    public void depth(TreeNode root, int depth, List<List<Integer>> list) {
+        if(root == null) {
+            return;
+        }
+        if(depth > list.size()) {
+            list.add(new ArrayList<>());
+        }
+        list.get(depth - 1).add(root.val);
+        if(root.left != null) {
+            depth(root.left, depth + 1, list);
+        }
+        if(root.right != null) {
+            depth(root.right, depth + 1, list);
+        }
+    }
+}
+```
+
+#### 非递归实现
+
+```java
+class Solution {
+    public int treeDepth(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        // 当前层遍历的节点数
+        int count = 0;
+        // 下一层的节点总数
+        int nextCount = 1;
+        // 深度
+        int depth = 0;
+        
+        while(queue.size() != 0) {
+            TreeNode node = queue.poll();
+            count++;
+            if(node.left != null) {
+                queue.add(node.left);
+            }
+            if(node.right != null) {
+                queue.add(node.right);
+            }
+            if(count == nextCount) {
+                count = 0;
+                nextCount = queue.size();
+                depth++;
+            }
+        }
+        
+        return depth;
     }
 }
 ```
