@@ -202,20 +202,6 @@ class Solution {
 ### 题解
 
 ```java
-/**
-*    public class ListNode {
-*        int val;
-*        ListNode next = null;
-*
-*        ListNode(int val) {
-*            this.val = val;
-*        }
-*    }
-*
-*/
-
-import java.util.ArrayList;
-
 class Solution {
     public ArrayList<Integer> list = new ArrayList<>();
     
@@ -435,16 +421,6 @@ class Solution {
 ### 题解
 
 ```java
-/*
- public class ListNode {
-    int val;
-    ListNode next = null;
-
-    ListNode(int val) {
-        this.val = val;
-    }
-}
-*/
 class Solution {
     public ListNode deleteDuplication(ListNode pHead) {
         if(pHead == null || pHead.next == null) {
@@ -539,14 +515,6 @@ class Solution {
 ### 题解
 
 ```java
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
 class Solution {
     public ListNode findKthToTail(ListNode pListHead, int k) {
         if(pListHead == null) {
