@@ -39,6 +39,7 @@
 72 | [平衡二叉树](#72) |`easy`
 73 | [数组中只出现一次的两个数字](#73) |`mid`
 75 | [和为S的两个数字](#75) |`easy`
+78 | [左旋转字符串](#78) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
@@ -1749,6 +1750,49 @@ class Solution {
         }
         
         return result;
+    }
+}
+```
+</br>
+
+## 78. <span id="78">左旋转字符串</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/12d959b108cb42b1ab72cef4d36af5ec?tpId=13&tqId=11196&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。
+
+请定义一个函数实现字符串左旋转操作的功能。
+
+比如输入字符串"abcdefg"和数字2，该函数将返回左旋转2位得到的结果"cdefgab"。
+
+**注意**：
+
+- 数据保证n小于等于输入字符串的长度。
+
+### 样例
+
+```
+输入："abcdefg" , n=2
+
+输出："cdefgab"
+```
+
+### 题解
+
+```java
+class Solution {
+    public String leftRotateString(String str,int n) {
+        if(str == null || str.length() == 0) {
+            return "";
+        }
+        int length = str.length();
+        // 取余使得左旋位数一定小于字符串长度
+        n = n % length;
+        // 构建两倍长的重复字符串
+        str += str;
+        return str.substring(n, length + n);
     }
 }
 ```
