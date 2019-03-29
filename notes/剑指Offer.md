@@ -27,6 +27,7 @@
 41 | [包含min函数的栈](#41) |`easy`
 42 | [栈的压入、弹出序列](#42) |`easy`
 44 | [分行从上往下打印二叉树](#44) |`mid`
+45 | [之字形打印二叉树](#45) |`mid`
 47 | [二叉树中和为某一值的路径](#47) |`mid`
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
@@ -1075,6 +1076,78 @@ class Solution {
         }
         
         return result;
+    }
+}
+```
+</br>
+
+## 45. <span id="45">之字形打印二叉树</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/91b69814117f4e8097390d107d2efbe0?tpId=13&tqId=11212&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+请实现一个函数按照之字形顺序从上向下打印二叉树。
+
+即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
+
+### 样例
+
+```
+输入如下图所示二叉树[8, 12, 2, null, null, 6, 4, null, null, null, null]
+    8
+   / \
+  12  2
+     / \
+    6   4
+输出：[[8], [2, 12], [6, 4]]
+```
+
+### 题解
+
+```java
+class Solution {
+    public List<List<Integer>> printFromTopToBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null) {
+            return result;
+        }
+        // 用于记录行
+        int index = 1;
+        // 用于存放奇数行的节点
+        Stack<TreeNode> oddStack = new Stack<>();
+        // 用于存放偶数行的节点
+        Stack<TreeNode> evenStack = new Stack<>();
+        oddStack.push(root);
+        
+        while(!oddStack.empty() || !evenStack.empty()) {
+            List<Integer> layerList = new ArrayList<>();
+            if(index % 2 != 0) {
+                while(!oddStack.empty()) {
+                    TreeNode node = oddStack.pop();
+                    layerList.add(node.val);
+                    pushNode(node.left, evenStack);
+                    pushNode(node.right, evenStack);
+                }
+            }else {
+                while(!evenStack.empty()) {
+                    TreeNode node = evenStack.pop();
+                    layerList.add(node.val);
+                    pushNode(node.right, oddStack);
+                    pushNode(node.left, oddStack);
+                }
+            }
+            result.add(layerList);
+            index++;
+        }
+        
+        return result;
+    }
+    
+    private void pushNode(TreeNode node, Stack<TreeNode> stack) {
+        if(node != null) {
+            stack.push(node);
+        }
     }
 }
 ```
