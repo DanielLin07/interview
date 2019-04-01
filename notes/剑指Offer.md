@@ -12,7 +12,7 @@
 15 | [二维数组中的查找](#15) |`easy`
 16 | [替换空格](#16) |`easy`
 17 | [从尾到头打印链表](#17) |`easy`
-19 | [二叉树的下一个节点](#17) |`mid`
+19 | [二叉树的下一个节点](#19) |`mid`
 20 | [用两个栈实现队列](#20) |`easy` 
 21 | [斐波那契数列](#21) |`easy`
 22 | [旋转数组的最小数字](#22) |`mid`
@@ -1955,6 +1955,38 @@ class Solution {
         int sum = n;
         boolean flag = (n > 0) && ((sum += getSum(n - 1)) > 0);
         return sum;
+    }
+}
+```
+</br>
+
+## 85. <span id="85">不用加减乘除做加法</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/59ac416b4b944300b617d4f7f111b215?tpId=13&tqId=11201&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+写一个函数，求两个整数之和，要求在函数体内不得使用＋、－、×、÷ 四则运算符号。
+
+### 样例
+
+```
+输入：num1 = 1 , num2 = 2
+
+输出：3
+```
+
+### 题解
+
+```java
+class Solution {
+    public int add(int num1, int num2) {
+        while(num2 != 0) {
+            int tmp = num1 ^ num2;
+            num2 = (num1 & num2) << 1;
+            num1 = tmp;
+        }
+        return num1;
     }
 }
 ```
