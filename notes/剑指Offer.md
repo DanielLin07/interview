@@ -221,6 +221,64 @@ class Solution {
 ```
 </br>
 
+## 19. <span id="19">二叉树的下一个节点</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+给定一棵二叉树的其中一个节点，请找出中序遍历序列的下一个节点。
+
+**注意**：
+
+- 如果给定的节点是中序遍历序列的最后一个，则返回空节点;
+- 二叉树一定不为空，且给定的节点一定不是空节点；
+
+### 样例
+
+```
+假定二叉树是：[2, 1, 3, null, null, null, null]， 给出的是值等于2的节点。
+
+则应返回值等于3的节点。
+
+解释：该二叉树的结构如下，2的后继节点是3。
+  2
+ / \
+1   3
+```
+
+### 题解
+
+```java
+class Solution {
+    public TreeNode inorderSuccessor(TreeNode pNode) {
+        if(pNode == null) {
+            return null;
+        }
+        
+        // 如果右子树不为空，则找右子树的最左节点
+        if(pNode.right != null) {
+            pNode = pNode.right;
+            while(pNode.left != null) {
+                pNode = pNode.left;
+            }
+            return pNode;
+        }
+        
+        // 如果右子树为空，则找第一个当前节点为其父节点的左子树的节点
+        while(pNode.father != null) {
+            if(pNode.father.left == pNode) {
+                return pNode.father;
+            }
+            pNode = pNode.father;
+        }
+        
+        return null;
+    }
+}
+```
+</br>
+
 ## 20. <span id="20">用两个栈实现队列</span>
 
 来源：[NowCoder](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
