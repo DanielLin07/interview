@@ -35,6 +35,7 @@
 55 | [连续子数组的最大和](#55) |`easy`
 58 | [把数组排成最小的数](#58) |`mid`
 63 | [字符串中第一个只出现一次的字符](#63) |`easy`
+64 | [字符流中第一个只出现一次的字符](#64) |`hard`
 66 | [两个链表的第一个公共结点](#66) |`easy`
 67 | [数字在排序数组中出现的次数](#67) |`easy`
 71 | [二叉树的深度](#71) |`easy`
@@ -1523,6 +1524,57 @@ class Solution {
             }
         }
         
+        return '#';
+    }
+}
+```
+</br>
+
+## 64. <span id="64">字符流中第一个只出现一次的字符</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/00de97733b8e4f97a3fb5c680ee10720?tpId=13&tqId=11207&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+请实现一个函数用来找出字符流中第一个只出现一次的字符。
+
+例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是’g’。
+
+当从该字符流中读出前六个字符”google”时，第一个只出现一次的字符是’l’。
+
+如果当前字符流没有存在出现一次的字符，返回#字符。
+
+### 样例
+
+```
+输入："google"
+
+输出："ggg#ll"
+
+解释：每当字符流读入一个字符，就进行一次判断并输出当前的第一个只出现一次的字符。
+```
+
+### 题解
+
+```java
+class Solution {
+    
+    private int[] hashtable = new int[128];
+    private StringBuilder data = new StringBuilder();
+    
+    //Insert one char from stringstream
+    public void Insert(char ch) {
+        data.append(ch);
+        ++hashtable[ch];
+    }
+  //return the first appearence once char in current stringstream
+    public char FirstAppearingOnce() {
+        char[] charArray = data.toString().toCharArray();
+        for(int i = 0; i < charArray.length; i++) {
+            if(hashtable[charArray[i]] == 1) {
+                return charArray[i];
+            }
+        }
         return '#';
     }
 }
