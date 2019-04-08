@@ -45,6 +45,7 @@
 78 | [左旋转字符串](#78) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 85 | [不用加减乘除做加法](#85) |`easy`
+87 | [把字符串转换成整数](#87) |`mid`
 251 | [跳台阶](#251) |`easy` 
 252 | [变态跳台阶](#252) |`easy` 
 
@@ -2039,6 +2040,73 @@ class Solution {
             num1 = tmp;
         }
         return num1;
+    }
+}
+```
+</br>
+
+## 87. <span id="87">把字符串转换成整数</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13&tqId=11202&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+请你写一个函数StrToInt，实现把字符串转换成整数这个功能。
+
+当然，不能使用atoi或者其他类似的库函数。
+
+### 样例
+
+```
+输入："123"
+
+输出：123
+
+注意:
+
+你的函数应满足下列条件：
+忽略所有行首空格，找到第一个非空格字符，可以是 ‘+/−’ 表示是正数或者负数，紧随其后找到最长的一串连续数字，将其解析成一个整数；
+整数后可能有任意非数字字符，请将其忽略；
+如果整数长度为0，则返回0；
+如果整数大于INT_MAX(2^31 − 1)，请返回INT_MAX；如果整数小于INT_MIN(−2^31) ，请返回INT_MIN；
+```
+
+### 题解
+
+```java
+class Solution {
+    public int strToInt(String str) {
+        if (str == null || str.trim().equals("")) {
+            return 0;
+        }
+        
+        // symbol=0,说明该数为正数;symbol=1，该数为负数;start用来区分第一位是否为符号位
+        int symbol = 0;
+        int start = 0;
+        char[] chars = str.trim().toCharArray();
+        if (chars[0] == '+') {
+            start = 1;
+        } else if (chars[0] == '-') {
+            start = 1;
+            symbol = 1;
+        }
+        
+        int result = 0;
+        for (int i = start; i < chars.length; i++) {
+            if (chars[i] > '9' || chars[i] < '0') {
+                return 0;
+            }
+            int sum= result * 10 + (int) (chars[i] - '0');
+            
+            if((sum - (int) (chars[i] - '0')) / 10 != result){
+                return 0;
+            }
+             
+            result = result * 10 + (int) (chars[i] - '0');
+        }
+
+        result = (int) Math.pow(-1, symbol) * result;
+        return result;
     }
 }
 ```
