@@ -42,6 +42,7 @@
 72 | [平衡二叉树](#72) |`easy`
 73 | [数组中只出现一次的两个数字](#73) |`mid`
 75 | [和为S的两个数字](#75) |`easy`
+76 | [和为S的连续正数序列](#76) |`mid`
 78 | [左旋转字符串](#78) |`easy`
 84 | [求1+2+…+n](#84) |`easy`
 85 | [不用加减乘除做加法](#85) |`easy`
@@ -1935,6 +1936,58 @@ class Solution {
             }
         }
         
+        return result;
+    }
+}
+```
+</br>
+
+## 76. <span id="76">和为S的连续正数序列</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/c451a3fd84b64cb19485dad758a55ebe?tpId=13&tqId=11194&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一个正数s，打印出所有和为s的连续正数序列（至少含有两个数）。
+
+例如输入15，由于1+2+3+4+5=4+5+6=7+8=15，所以结果打印出3个连续序列1～5、4～6和7～8。
+
+### 样例
+
+```
+输入：15
+
+输出：[[1,2,3,4,5],[4,5,6],[7,8]]
+```
+
+### 题解
+
+```java
+class Solution {
+    public List<List<Integer>> findContinuousSequence(int sum) {
+        // 用于记录结果
+        List<List<Integer>> result = new ArrayList<>();
+        // 双指针指定窗口
+        int pLow = 0, pHigh = 1;
+        while(pLow < pHigh) {
+            // 计算连续正数序列的和：S =（a0 + an）* n / 2
+            int cur = (pLow + pHigh) * (pHigh - pLow + 1) / 2;
+            // 如果窗口内的和刚好相等，就将窗口范围的所有数添加进结果集
+            if(cur == sum) {
+                List<Integer> subResult = new ArrayList<>();
+                for(int i = pLow; i <= pHigh; i++) {
+                    subResult.add(i);
+                }
+                result.add(subResult);
+                pLow++;
+            // 如果当前窗口内的值之和小于sum，那么右边窗口右移一下
+            }else if(cur < sum) {
+                pHigh++;
+            // 如果当前窗口内的值之和大于sum，那么左边窗口右移一下
+            }else {
+                pLow++;
+            }
+        }
         return result;
     }
 }
