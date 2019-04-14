@@ -33,6 +33,7 @@
 52 | [数组中出现次数超过一半的数字](#52) |`easy`
 53 | [最小的k个数](#53) |`easy`
 55 | [连续子数组的最大和](#55) |`easy`
+56 | [从1到n整数中1出现的次数](#56) |`hard`
 58 | [把数组排成最小的数](#58) |`mid`
 63 | [字符串中第一个只出现一次的字符](#63) |`easy`
 64 | [字符流中第一个只出现一次的字符](#64) |`hard`
@@ -1419,6 +1420,45 @@ class Solution {
         }
         
         return maxSum;
+    }
+}
+```
+</br>
+
+## 56. <span id="56">从1到n整数中1出现的次数</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/bd7f978302044eee894445e244c7eee6?tpId=13&tqId=11184&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一个整数n，求从1到n这n个整数的十进制表示中1出现的次数。
+
+例如输入12，从1到12这些整数中包含“1”的数字有1，10，11和12，其中“1”一共出现了5次。
+
+### 样例
+
+```
+输入： 12
+
+输出： 5
+```
+
+### 题解
+
+```java
+class Solution {
+    public int NumberOf1Between1AndN_Solution(int n) {
+        int count=0;
+        StringBuilder str = new StringBuilder();
+        for(int i = 1; i <= n; i++){
+             str.append(i);
+        }
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == '1') {
+                count++;   
+            }
+        }
+        return count;
     }
 }
 ```
