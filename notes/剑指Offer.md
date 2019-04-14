@@ -1448,7 +1448,7 @@ class Solution {
 ```java
 class Solution {
     public int NumberOf1Between1AndN_Solution(int n) {
-        int count=0;
+        int count = 0;
         StringBuilder str = new StringBuilder();
         for(int i = 1; i <= n; i++){
              str.append(i);
