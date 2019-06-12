@@ -1,10 +1,6 @@
 # 剑指Offer题解
 
-## Introduction
-
-记录自己的剑指Offer题解
-
-## Catlog
+## 目录
 
 \# | 题目 | 难度 
 :-: | :-: | :-:
