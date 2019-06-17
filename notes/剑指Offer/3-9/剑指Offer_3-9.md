@@ -99,7 +99,7 @@ class Solution {
 
 ## 5. <span id="5">替换空格</span>
 
-来源：[AcWing](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+来源：[NowCoder](https://www.nowcoder.com/practice/4060ac7e3e404ad1a894ef3e17650423?tpId=13&tqId=11155&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
 ### 题目描述
 
@@ -168,7 +168,44 @@ class Solution {
 }
 ```
 
-## 7. <span id="7">二叉树的下一个节点</span>
+## 7. <span id="7">重建二叉树</span>
+
+来源：[NowCoder](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
+
+### 题目描述
+
+输入一棵二叉树前序遍历和中序遍历的结果，请重建该二叉树。
+
+**注意**：
+
+- 二叉树中每个节点的值都互不相同；
+- 输入的前序遍历和中序遍历一定合法。
+
+### 样例
+
+```
+给定：
+前序遍历是：[3, 9, 20, 15, 7]
+中序遍历是：[9, 3, 15, 20, 7]
+
+返回：[3, 9, 20, null, null, 15, 7, null, null, null, null]
+返回的二叉树如下所示：
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+
+### 题解
+
+```java
+class Solution {
+    
+}
+```
+
+## 8. <span id="8">二叉树的下一个节点</span>
 
 来源：[NowCoder](https://www.nowcoder.com/practice/9023a0c988684a53960365b889ceaf5e?tpId=13&tqId=11210&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
@@ -225,7 +262,7 @@ class Solution {
 }
 ```
 
-## 8. <span id="8">用两个栈实现队列</span>
+## 9. <span id="9">用两个栈实现队列</span>
 
 来源：[NowCoder](https://www.nowcoder.com/practice/54275ddae22f475981afa2244dd448c6?tpId=13&tqId=11158&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)
 
